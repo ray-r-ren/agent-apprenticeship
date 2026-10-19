@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-apprenticeship"
-version = "0.2.1"
+version = "0.3.0"
 description = "Open framework for turning real agent work into transferable agent experience"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -15,9 +15,15 @@ llm = ["openai>=2,<3"]
 test = ["pytest>=8"]
 
 [project.scripts]
-apprentice = "agent_apprenticeship_trace.cli:main"
-agent-apprenticeship = "agent_apprenticeship_trace.cli:main"
-aa-trace = "agent_apprenticeship_trace.cli:main"
+apprentice = "agent_apprenticeship.cli:main"
+agent-apprenticeship = "agent_apprenticeship.cli:main"
+aa-trace = "agent_apprenticeship.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"agent_apprenticeship.atif_models" = ["LICENSE"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

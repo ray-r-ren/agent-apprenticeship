@@ -274,7 +274,6 @@ async function ensureRuntime(python) {
       "--disable-pip-version-check",
       "--progress-bar", "off",
       "--no-input",
-      "--no-build-isolation",
       "--retries", "10",
       "--timeout", "60",
       packageRoot
@@ -297,7 +296,7 @@ function runCli(python, args, usePackagedSource) {
     const srcPath = path.join(packageRoot, "src");
     env.PYTHONPATH = env.PYTHONPATH ? `${srcPath}${path.delimiter}${env.PYTHONPATH}` : srcPath;
   }
-  const result = spawnSync(python, ["-m", "agent_apprenticeship_trace.cli", ...args], {
+  const result = spawnSync(python, ["-m", "agent_apprenticeship.cli", ...args], {
     stdio: "inherit",
     env
   });

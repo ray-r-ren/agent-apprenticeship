@@ -1,6 +1,6 @@
 {
   "name": "agent-apprenticeship",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "The living ecosystem for AI agents learning from real-world work through iterative loops and training-signal exchange.",
   "license": "MIT",
   "repository": {
@@ -16,13 +16,12 @@
     "LICENSE",
     "schemas",
     "examples/minimal_experience_compilation",
-    "selected_ale_tasks_demo",
     "pyproject.toml",
-    "src/agent_apprenticeship_trace",
+    "src/agent_apprenticeship",
     "bin"
   ],
   "scripts": {
-    "test": ".venv/bin/python -m pytest -q tests",
+    "test": "python -m pytest -q tests",
     "pack": "npm pack --dry-run",
     "prepack": "find src bin -name __pycache__ -type d -prune -exec rm -rf {} + && find src bin -name '*.pyc' -delete",
     "smoke": "PATH=./.venv/bin:$PATH AA_NPM_USE_SYSTEM_PYTHON=1 node ./bin/agent-apprenticeship.js --help"

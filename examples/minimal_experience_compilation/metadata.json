@@ -7,7 +7,7 @@
   "workflow_family": "structured_note_and_summary",
   "schema_version": "aa-experience-compilation-v0.2",
   "compiler_version": "aa-experience-compiler-v0.2",
-  "package_version": "0.2.1",
+  "package_version": "0.3.0",
   "created_at": "2026-07-03T00:00:00Z",
   "components": {
     "traces": true,
