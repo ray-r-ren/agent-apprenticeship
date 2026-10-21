@@ -108,10 +108,8 @@ def test_nested_trace_export(tmp_path, trajectory):
     assert validate_trace_tree(tmp_path) == 1
 
 
-def test_example_and_schemas():
+def test_schemas():
     root = Path(__file__).resolve().parents[1]
-    rows = read_jsonl(root / 'examples/minimal_experience_compilation/trace.jsonl')
-    assert len(rows) == 1 and len(rows[0]['steps']) == 2
     from agent_apprenticeship.atif_models import Trajectory, Step
     for name, model in [('trace', Trajectory), ('trace_step', Step)]:
         schema = json.loads((root / f'schemas/{name}.schema.json').read_text())

@@ -15,7 +15,6 @@
     "README.md",
     "LICENSE",
     "schemas",
-    "examples/minimal_experience_compilation",
     "pyproject.toml",
     "src/agent_apprenticeship",
     "bin"

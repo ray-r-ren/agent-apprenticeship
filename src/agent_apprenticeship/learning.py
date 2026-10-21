@@ -426,6 +426,8 @@ def compile_experience_pack(
     write_json(pack_path / "source_refs.json", {"sources": source_refs})
     (pack_path / "skill.md").write_text(skill)
     (pack_path / "SUMMARY.md").write_text(summary)
+    from .agent_env_exporter import export_agent_env
+    export_agent_env(pack_path)
     return pack_path
 
 

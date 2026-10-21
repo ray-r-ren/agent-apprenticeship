@@ -3277,6 +3277,8 @@ def run_tdo_for_package(package_root: Path, settings: Settings, *, run_root: Pat
         )
         write_json(tdo_dir / "tdo_report.json", report)
         write_json(tdo_dir / "tdo_manifest.json", {"schema_version": TDO_VERSION, "tdo_status": "disabled"})
+        from .agent_env_exporter import export_agent_env
+        export_agent_env(package_root)
         return report.model_dump(mode="json")
     max_rounds = _int_env("AA_EXPERIENCE_COMPILER_MAX_ROUNDS", _int_env("AA_TDO_MAX_ROUNDS", 3))
     min_quality = _float_env("AA_EXPERIENCE_COMPILER_MIN_QUALITY", _float_env("AA_TDO_MIN_QUALITY_SCORE", 0.65))
@@ -3466,6 +3468,8 @@ def run_tdo_for_package(package_root: Path, settings: Settings, *, run_root: Pat
         write_artifacts_index(package_root)
     except Exception:
         pass
+    from .agent_env_exporter import export_agent_env
+    export_agent_env(package_root)
     return report.model_dump(mode="json")
 
 

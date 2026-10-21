@@ -1,5 +1,6 @@
 from __future__ import annotations
 from .io import validate_trace_tree
+from .agent_env_exporter import export_agent_env
 
 import shutil
 import tempfile
@@ -469,6 +470,7 @@ def create_contribution_bundle(
         _write_manifest(bundle_root, bundle_root, settings, include_internal_schema=True)
         _write_card(bundle_root)
         validate_trace_tree(bundle_root)
+        export_agent_env(bundle_root)
         return bundle_root
 
     with tempfile.TemporaryDirectory(prefix="aa-release-for-bundle-") as tmp:
@@ -480,4 +482,5 @@ def create_contribution_bundle(
         _write_card(bundle_root)
 
     validate_trace_tree(bundle_root)
+    export_agent_env(bundle_root)
     return bundle_root

@@ -30,6 +30,9 @@ def test_run_release_compiler_bundle_and_fallback(tmp_path, monkeypatch):
     release_rows = [json.loads(line) for line in (release / 'agent_traces.jsonl').read_text().splitlines()]
     assert all(row['extra']['agent_apprenticeship']['attempt_status'] == 'completed' for row in release_rows)
     bundle = create_contribution_bundle(run, tmp_path / 'bundle', include_debug=True)
+    from agent_apprenticeship.agent_env_verify import verify
+    for root in (package, release, bundle):
+        assert verify(root / "agent_env/artifacts/experience")
     for root in (run, release, bundle):
         assert validate_trace_tree(root) >= 6
         for path in root.rglob('agent_trace.json'):

@@ -250,7 +250,7 @@ def write_artifacts_index(package_root: Path):
     trace_links=_trace_artifact_links(package_root)
     for f in package_root.rglob('*'):
         rel=f.relative_to(package_root)
-        if is_ignored_release_path(rel):
+        if 'agent_env' in rel.parts or is_ignored_release_path(rel):
             continue
         if f.is_file() and f.name != 'artifacts_index.json':
             mime=mimetypes.guess_type(f.name)[0]
@@ -300,4 +300,6 @@ def write_artifacts_index(package_root: Path):
     manifest['trace_counters']=counters
     write_json(manifest_path, manifest)
     write_json(package_root/'artifacts_index.json', paths)
+    from .agent_env_exporter import export_agent_env
+    export_agent_env(package_root)
     return paths

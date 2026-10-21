@@ -257,4 +257,6 @@ def create_release(run_root: Path, release_root: Path) -> Path:
     except Exception:
         pass
     _propagate_release_status_fields(release_root)
+    from .agent_env_exporter import export_agent_env
+    export_agent_env(release_root)
     return release_root

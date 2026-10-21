@@ -3521,6 +3521,7 @@ def _locate_package_root(path: Path) -> Path:
 
 def _copy_or_zip_package(src: Path, output: Path, *, item_id: str, source: str) -> Path:
     src = _locate_package_root(src)
+    from .agent_env_exporter import export_agent_env
     from .io import validate_trace_tree
     validate_trace_tree(src)
     output = output.expanduser()
@@ -3551,6 +3552,7 @@ def _copy_or_zip_package(src: Path, output: Path, *, item_id: str, source: str) 
             shutil.rmtree(staging)
         (staging / "package").mkdir(parents=True)
         shutil.copytree(src, staging / "package", dirs_exist_ok=True)
+        export_agent_env(staging / "package")
         write_json(staging / "export_manifest.json", manifest)
         _zip_dir(staging, output)
         shutil.rmtree(staging)
@@ -3559,6 +3561,7 @@ def _copy_or_zip_package(src: Path, output: Path, *, item_id: str, source: str) 
         shutil.rmtree(output)
     output.mkdir(parents=True)
     shutil.copytree(src, output / "package", dirs_exist_ok=True)
+    export_agent_env(output / "package")
     write_json(output / "export_manifest.json", manifest)
     return output
 
